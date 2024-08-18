@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"SFXsmall1",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":64,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.846145,
+  "name":"SFXsmall1",
+  "parent":{
+    "name":"Small",
+    "path":"folders/Sounds/Menus/Small.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":32000,
+  "soundFile":"SFXsmall1.wav",
+  "type":1,
+  "volume":1.0,
+}
