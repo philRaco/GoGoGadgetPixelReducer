@@ -4,9 +4,9 @@
 
 if timIsSolid == 0{
 	if instance_exists(obj_kid){
-		if round(obj_kid.y+sprite_get_yoffset(spr_player)-1) > self.y-sprite_yoffset+7{
+		if round(obj_kid.y+sprite_get_yoffset(spr_player)-1) > self.y-sprite_yoffset{
 			stateSemiSolid = 1;
-		} else if round(obj_kid.y+sprite_get_yoffset(spr_player)) < self.y-sprite_yoffset+7{
+		} else if round(obj_kid.y+sprite_get_yoffset(spr_player)) < self.y-sprite_yoffset{
 			stateSemiSolid = 0;
 		}
 	}

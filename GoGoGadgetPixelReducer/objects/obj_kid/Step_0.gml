@@ -105,33 +105,19 @@ if abs(global.kidV) != 0{
 
 #region collision (what a mess.)
 
-if instance_exists(obj_flouer){
-	var nearestSolidJug = collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_flouer,false,false);
-	if nearestSolidJug != noone{
-		if nearestSolidJug.solid == true{
-			show_debug_message(string(nearestSolidJug))
-		    if (bbox_bottom > nearestSolidJug.y+sprite_get_yoffset(spr_player)){
-		        y -= nearestSolidJug.y-sprite_get_yoffset(spr_player);
-		    }
-		    move_contact_solid(270,12);
-		    hspeed = 0;
-		    vspeed = 0;
-		}
-	}
-}
-
 if instance_exists(obj_ssolid){ //REMEMBER TO CARRY OVER TO MIND !!!
 	var nearestSolidSemi = collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false);
 	if nearestSolidSemi != noone{
-		if nearestSolidSemi.solid == true{
-			if place_meetin
-			show_debug_message(string(nearestSolidSemi))
-		    if (bbox_bottom > nearestSolidSemi.y+sprite_get_yoffset(spr_player)){
-		        y -= nearestSolidSemi.y-sprite_get_yoffset(spr_player);
-		    }
-		    move_contact_solid(270,12);
-		    hspeed = 0;
-		    vspeed = 0;
+		if place_meeting(x,y+3,obj_ssolid){
+			if nearestSolidSemi.solid == true{
+				show_debug_message(string(nearestSolidSemi))
+			    if (bbox_bottom > nearestSolidSemi.y+sprite_get_yoffset(spr_player)){
+			        y -= nearestSolidSemi.y-sprite_get_yoffset(spr_player);
+			    }
+			    move_contact_solid(270,12);
+			    hspeed = 0;
+			    vspeed = 0;
+			}
 		}
 	}
 }
@@ -259,21 +245,8 @@ if (calling2 == 1){
 
 makePlaceHG(); //huh.
 
-if instance_exists(obj_flouer){
-	if (place_meeting(x,y,obj_flouer) && isInBetween2(vspeed,0.1,2)) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_flouer,false,false).solid == true{
-	    for(var pgi = 0; pgi < 1000; ++pgi){
-	        //up :) :) :) :)
-	        if (!place_meeting(x,y-pgi,obj_flouer)){
-	            y -= pgi;
-	            itLands = 1;
-	            break;
-	        }
-	    }
-	}
-}
-
-if instance_exists(obj_ssolid){
-	if (place_meeting(x,y,obj_ssolid) && isInBetween2(vspeed,0.1,2)) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false).solid == true{
+if collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false) != noone{
+	if (place_meeting(x,y,obj_ssolid) && isInBetween2(vspeed,0.1,2) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false).solid == true){
 	    for(var pgi = 0; pgi < 1000; ++pgi){
 	        //up :) :) :) :)
 	        if (!place_meeting(x,y-pgi,obj_ssolid)){
@@ -392,9 +365,51 @@ if (coyoteTimer != 0){
 
 #region grabbing
 
-if scr_input("sub-action"){
-	show_debug_message("works!!");
+if stopGrabbing != true{
+	if scr_input("sub-action"){
+		if grabClaimed == noone{
+			//can grab water
+			if collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false){
+				grabClaimed = collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false);
+			}
+		}
+	}
 }
+
+if grabClaimed != noone{
+	if isInBetween2(x, grabClaimed.bbox_left-2, grabClaimed.bbox_right+1){ // if kid's x in between area of box when its close to wall
+		with grabClaimed{
+			followKidXGrab(); //follow Player on X axis (lower)
+			y = (obj_kid.y-sprite_get_yoffset(spr_player)*1.5); // follow player on Y Axis (UPPER)
+			vspeed = obj_kid.vspeed;
+		}
+	} else {
+		stopGrabbing = true;
+		noMomCarry = 1;
+	}
+}
+
+if scr_input_released("sub-action"){
+	stopGrabbing = true;
+}
+
+show_debug_message("ist?: " + string(stopGrabbing))
+
+if (stopGrabbing == true){
+	with grabClaimed{
+		x = obj_kid.x;
+		y = (obj_kid.y-sprite_get_yoffset(spr_player)*1.5);
+		if obj_kid.noMomCarry != 1{
+			momVel = global.MKdir*1.5;
+			vspeed = -2;
+		}
+		canBeGrabbed = false; //doesnt let grab in mid air... nvm
+	}
+	grabClaimed = noone;
+	stopGrabbing = false;
+}
+
+show_debug_message(string(grabClaimed))
 
 #endregion
 

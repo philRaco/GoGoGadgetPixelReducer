@@ -79,13 +79,19 @@ extrJump = -1;
 #region that reminds me of that time i started Grabbing
 
 grabClaimed = noone;
+stopGrabbing = false;
 
 grabOffsetY = -(sprite_yoffset/2)+4
 grabbedObjOffsetY = 0; //half of hieght of other object
 
+grabbedNextColX = noone;
+noMomCarry = false;
+
 #endregion
 
 #region visual
+
+depth = -5;
 
 image_xscale = global.MKdir;
 
@@ -105,6 +111,21 @@ mY = 1;
 #endregion
 
 #region collision
+
+//	snap to ground instantly btw
+var snapToSolidBeninging = collision_line(x,y,x,y+(sprite_yoffset*4),obj_col,false,false);
+if snapToSolidBeninging != noone{
+	y = snapToSolidBeninging.y;
+	if (place_meeting(x,y,snapToSolidBeninging)){
+	    for(var pgi = 0; pgi < 1000; ++pgi){
+	        //up :) :) :) :)
+	        if (!place_meeting(x,y-pgi,snapToSolidBeninging)){
+	            y -= pgi;
+	            break;
+	        }
+	    }
+	}
+}
 
 upperstance = 270;
 

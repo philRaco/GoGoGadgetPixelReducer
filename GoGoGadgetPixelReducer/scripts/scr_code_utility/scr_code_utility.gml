@@ -4,6 +4,13 @@
 
 ///@function isInBetween2(var,x1,x2)
 
+/*
+argument 1: left boundary
+argument 2: right boundary
+
+argument 1 >= x >= argument 2
+*/
+
 function isInBetween2(argument0,argument1,argument2){
 	if (argument0 >= argument1) && (argument0 <= argument2){
 	    return true;
@@ -21,9 +28,7 @@ function isInBetween2(argument0,argument1,argument2){
 //	diagonal collision line that points down for every "solid" collision, i love how it uses a rectangle lol
 
 function collisionLine(argument0){
-	if (collision_rectangle(x-1,y,x+1,y+(argument0),obj_col,false,false))
-	or 
-    (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false) != noone && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false).stateSemiSolid = 0)
+	if (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_col,false,false))
 	or 
     (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false) != noone && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false).stateSemiSolid = 0)
 	{ //..wow that is long
@@ -59,7 +64,7 @@ function nearObjectSnapMK(){
 
 #region makePlaceHG
 
-///makePlaceHG()
+///@function makePlaceHG()
 
 /*
 previously known just as Unstucking!
@@ -136,6 +141,47 @@ function makePlaceHG(){
 	            break;
 	        }
 	    }
+	}
+}
+
+#endregion
+
+#region followKidXGrab
+
+///@function followKidXGrab()
+
+/*
+makes object follow the x coordinate of kid object. grabbedNextColX
+*/
+
+function followKidXGrab(){
+	var kidKnowsY = obj_kid.y-sprite_get_yoffset(spr_player)*1.5;
+	var nearestColLateral = 0;
+	if instance_nearest(x,y,obj_col).x < x{
+		nearestColLateral = instance_nearest(x,kidKnowsY,obj_col).bbox_right;
+	} else {
+		nearestColLateral = instance_nearest(x,kidKnowsY,obj_col).bbox_left;
+	}
+	//the fun shtuff
+	grabbedNextColX = collision_line(x,kidKnowsY,nearestColLateral,kidKnowsY,obj_col,false,false);
+	if !collision_line(bbox_left-2,y,bbox_right+1,y,obj_col,false,false){ //betcha i will have to update this with other shtuff later on
+		x = obj_kid.x; //will get back to ya soon
+		show_debug_message("i am")
+		//increase bounding box.?
+	} else {
+		if instance_nearest(x,y,obj_col).x < x{
+			//code
+			if !isInBetween2(obj_kid.x,nearestColLateral,x){
+				show_debug_message("i am NOT left")
+				x = obj_kid.x;
+			}
+		} else if instance_nearest(x,y,obj_col).x > x{
+			//code
+			if !isInBetween2(obj_kid.x,x,nearestColLateral){
+				show_debug_message("i am NOT right")
+				x = obj_kid.x;
+			}
+		}
 	}
 }
 

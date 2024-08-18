@@ -11,6 +11,11 @@ These guys can be semisolids in the proper state! ("Jug")
 upperstance = 270;
 
 momVel = 0;
+momSD = 0.2;
+
+solid = false; //HERES MY BIG BRAIN IDEA
+
+canBeGrabbed = true;
 
 #endregion
 
@@ -36,10 +41,9 @@ objSize = 1;
 
 #region forJug
 
-stateSemiSolid = 0;
-
-timIsSolid = 1;
-tim = 35;
+IDsemi = instance_create_layer(x,y,"Instances",obj_ssolid);
+IDsemi.x = x;
+IDsemi.y = y;
 
 #endregion
 

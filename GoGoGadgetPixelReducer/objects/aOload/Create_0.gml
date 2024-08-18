@@ -14,6 +14,12 @@ randomize();
 
 #macro ture true //SUPER important macro
 
+//gamepad buttons
+#macro gp_button_down gp_face1
+#macro gp_button_up gp_face2
+#macro gp_button_left gp_face3
+#macro gp_button_right gp_face4
+
 #endregion
 
 #region Resolution
@@ -165,7 +171,7 @@ ini_close();
 
 #endregion
 
-#region debug
+#region debug maybe
 
 game_set_speed(60,gamespeed_fps)
 
