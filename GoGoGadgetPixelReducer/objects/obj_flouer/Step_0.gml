@@ -76,9 +76,9 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 		#region semi solid action
 		if timIsSolid == 0{
 			if instance_exists(obj_kid){
-			    if round(obj_kid.y+sprite_get_yoffset(spr_player)-1) > self.y{
+			    if round(obj_kid.y+sprite_get_yoffset(spr_player)-1) > self.y-sprite_yoffset+7{
 			        stateSemiSolid = 1;
-			    } else if round(obj_kid.y+sprite_get_yoffset(spr_player)) < self.y{
+			    } else if round(obj_kid.y+sprite_get_yoffset(spr_player)) < self.y-sprite_yoffset+7{
 			        stateSemiSolid = 0;
 			    }
 			}

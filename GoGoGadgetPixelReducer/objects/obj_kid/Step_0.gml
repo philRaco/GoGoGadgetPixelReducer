@@ -30,6 +30,12 @@ if sign(vspeed) = 1{
 
 #region deacc and more
 
+//fix?
+
+if vspeed = 0{
+	y = floor(y);
+}
+
 //	hoo! im tired.
 
 if rJT > 0{
@@ -99,15 +105,35 @@ if abs(global.kidV) != 0{
 
 #region collision (what a mess.)
 
-if place_meeting(x,y+3,obj_fluoer){ //FOR SEMISOLIDS!
-    if instance_nearest(x,y,obj_fluoer).solid == true{
-        if (bbox_bottom > instance_nearest(x,y,obj_fluoer).y+sprite_get_yoffset(spr_player)){
-            y -= instance_nearest(x,y,obj_fluoer).y-sprite_get_yoffset(spr_player);
-        }
-        move_contact_solid(270,12);
-        hspeed = 0;
-        vspeed = 0;
-    }
+if instance_exists(obj_flouer){
+	var nearestSolidJug = collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_flouer,false,false);
+	if nearestSolidJug != noone{
+		if nearestSolidJug.solid == true{
+			show_debug_message(string(nearestSolidJug))
+		    if (bbox_bottom > nearestSolidJug.y+sprite_get_yoffset(spr_player)){
+		        y -= nearestSolidJug.y-sprite_get_yoffset(spr_player);
+		    }
+		    move_contact_solid(270,12);
+		    hspeed = 0;
+		    vspeed = 0;
+		}
+	}
+}
+
+if instance_exists(obj_ssolid){ //REMEMBER TO CARRY OVER TO MIND !!!
+	var nearestSolidSemi = collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false);
+	if nearestSolidSemi != noone{
+		if nearestSolidSemi.solid == true{
+			if place_meetin
+			show_debug_message(string(nearestSolidSemi))
+		    if (bbox_bottom > nearestSolidSemi.y+sprite_get_yoffset(spr_player)){
+		        y -= nearestSolidSemi.y-sprite_get_yoffset(spr_player);
+		    }
+		    move_contact_solid(270,12);
+		    hspeed = 0;
+		    vspeed = 0;
+		}
+	}
 }
 
 if place_meeting(x+global.kidV,y,obj_col){
@@ -124,10 +150,8 @@ if !collisionLine(sprite_yoffset*1.25){
     //in the air
     if vspeed < 1{
         jumpRecoverDis = (sprite_yoffset*1.25);
-        show_debug_message("UPLIFT");
     } else {
         jumpRecoverDis = (sprite_yoffset*1.75)*clamp(vspeed,0,1.5);
-        show_debug_message("landing?");
     }
 	//i am a coyote
 	if coyoteTimer > 0{
@@ -140,7 +164,6 @@ if !collisionLine(sprite_yoffset*1.25){
 	}
 } else {
     //colliding with floor?
-    show_debug_message("o___o");
     if vspeed == 0{
         jumpRecoverDis = (sprite_yoffset*1.2);
     }
@@ -236,11 +259,24 @@ if (calling2 == 1){
 
 makePlaceHG(); //huh.
 
-if instance_exists(obj_fluoer){
-	if (place_meeting(x,y,obj_fluoer) && isInBetween2(vspeed,-0.75,0.75)) && instance_nearest(x,y,obj_flouer.solid == true){
+if instance_exists(obj_flouer){
+	if (place_meeting(x,y,obj_flouer) && isInBetween2(vspeed,0.1,2)) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_flouer,false,false).solid == true{
 	    for(var pgi = 0; pgi < 1000; ++pgi){
 	        //up :) :) :) :)
-	        if (!place_meeting(x,y-pgi,obj_fluoer)){
+	        if (!place_meeting(x,y-pgi,obj_flouer)){
+	            y -= pgi;
+	            itLands = 1;
+	            break;
+	        }
+	    }
+	}
+}
+
+if instance_exists(obj_ssolid){
+	if (place_meeting(x,y,obj_ssolid) && isInBetween2(vspeed,0.1,2)) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false).solid == true{
+	    for(var pgi = 0; pgi < 1000; ++pgi){
+	        //up :) :) :) :)
+	        if (!place_meeting(x,y-pgi,obj_ssolid)){
 	            y -= pgi;
 	            itLands = 1;
 	            break;
@@ -251,8 +287,7 @@ if instance_exists(obj_fluoer){
 
 #endregion
 
-#region left to right
-
+#region left to right...
             // move left //
     if scr_input("left"){
         DeAcc = 0;
@@ -275,7 +310,7 @@ if instance_exists(obj_fluoer){
         MaxV = global.kidMaxV;
         //instance_create(x+global.MKdir,y+sprite_yoffset,obj_steppers); scr_audiostop(stepSound); stepSound = scr_audioplay(stepInhalt,false); obj_steppers.sprite_index = stepSpr; stepTimer = 10;
     }
-    if (scr_input_pressed("right") && !place_free(x+global.kidV,y+12) && isInBetween2(global.kidV,0,2.9)) {
+    if (scr_input_pressed("right") && !place_free(x+global.kidV,y+12) && isInBetween2(global.kidV,0,2.9)){
         global.kidV = 1;
         MaxV = global.kidMaxV;
         //instance_create(x+global.MKdir,y+sprite_yoffset,obj_steppers); scr_audiostop(stepSound); stepSound = scr_audioplay(stepInhalt,false); obj_steppers.sprite_index = stepSpr; stepTimer = 10;
@@ -286,7 +321,6 @@ if instance_exists(obj_fluoer){
         MaxV = global.kidMaxV;
         cantwont = 0;
     }
-
 #endregion
 
 #region jump
@@ -331,6 +365,7 @@ if (coyoteTimer != 0){
 			*/
 	        vspeed = 0;
 	        jumpSpeed = jumpMax;
+			y -= 1;
         
 	        soundJump = audio_play_sound(SFXjump,1,false);
 	        xMod = 0.7;
@@ -358,7 +393,7 @@ if (coyoteTimer != 0){
 #region grabbing
 
 if scr_input("sub-action"){
-	
+	show_debug_message("works!!");
 }
 
 #endregion
@@ -371,6 +406,6 @@ if scr_input("sub-action"){
 
 #region always
 
-vspeed = min(vspeed,6.2);
+vspeed = min(vspeed,5.8);
 
 #endregion

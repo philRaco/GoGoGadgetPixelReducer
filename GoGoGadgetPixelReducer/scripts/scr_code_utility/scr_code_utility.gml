@@ -22,7 +22,11 @@ function isInBetween2(argument0,argument1,argument2){
 
 function collisionLine(argument0){
 	if (collision_rectangle(x-1,y,x+1,y+(argument0),obj_col,false,false))
-	{
+	or 
+    (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false) != noone && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false).stateSemiSolid = 0)
+	or 
+    (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false) != noone && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false).stateSemiSolid = 0)
+	{ //..wow that is long
 	    return true;
 	} else {
 	    return false;

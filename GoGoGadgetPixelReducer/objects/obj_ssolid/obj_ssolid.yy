@@ -1,14 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_flouer",
+  "%Name":"obj_ssolid",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_col","path":"objects/obj_col/obj_col.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_flouer",
+  "name":"obj_ssolid",
   "overriddenProperties":[],
   "parent":{
     "name":"Hazards",
@@ -33,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_watertank",
-    "path":"sprites/spr_watertank/spr_watertank.yy",
+    "name":"spr_semisolid",
+    "path":"sprites/spr_semisolid/spr_semisolid.yy",
   },
   "spriteMaskId":null,
   "visible":true,

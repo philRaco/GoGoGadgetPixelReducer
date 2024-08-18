@@ -16,11 +16,12 @@ momVel = 0;
 
 #region state machine (most things can be changed in create code/instance properties!)
 
-state = "Water";
+state = "None";
 stateHold = "toBottle";
 objSize = 1;
 
 /*
+"None"
 "Bottle"
 "Water"
 "Jug"
