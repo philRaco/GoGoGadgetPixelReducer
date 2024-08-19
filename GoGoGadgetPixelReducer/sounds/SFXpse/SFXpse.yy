@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"SFXpse",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":0,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.827188,
+  "name":"SFXpse",
+  "parent":{
+    "name":"Menus",
+    "path":"folders/Sounds/Menus.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"SFXpse.wav",
+  "type":1,
+  "volume":1.0,
+}

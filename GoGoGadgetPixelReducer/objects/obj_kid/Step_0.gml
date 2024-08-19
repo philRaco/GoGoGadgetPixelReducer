@@ -122,8 +122,8 @@ if instance_exists(obj_ssolid){ //REMEMBER TO CARRY OVER TO MIND !!!
 	}
 }
 
-if instance_exists(obj_flouer){
-	var nearestSolidSemi = collision_rectangle(bbox_left,bbox_top,bbox_right,y+24,obj_flouer,false,false);
+if instance_exists(obj_flouer){ //is it bugged cause of this or..? is it the object itself? cause of semi solid shtuff
+	var nearestSolidSemi = collision_rectangle(bbox_left,bbox_top,bbox_right,y+34,obj_flouer,false,false);
 	if nearestSolidSemi != noone{
 		if place_meeting(x,y+3,obj_flouer){
 			if nearestSolidSemi.solid == true{
@@ -180,10 +180,6 @@ if collisionLine(sprite_yoffset+4){
 	coyoteTimer = coyoteTimerInit;
 } else {
     itLands = 0;
-}
-
-if keyboard_check_pressed(ord("R")){
-	game_restart()
 }
 
 if noMoreJump == 1{
@@ -275,7 +271,7 @@ if collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_ssolid,false,false
 	}
 }
 
-if collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_flouer,false,false) != noone{
+if collision_rectangle(bbox_left,bbox_top,bbox_right,y+24,obj_flouer,false,false) != noone{
 	if (place_meeting(x,y,obj_flouer) && isInBetween2(vspeed,0.1,2) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+14,obj_flouer,false,false).solid == true){
 	    for(var pgi = 0; pgi < 1000; ++pgi){
 	        //up :) :) :) :)
@@ -433,10 +429,10 @@ show_debug_message("ist?: " + string(stopGrabbing))
 
 if (stopGrabbing == true){
 	with grabClaimed{
-		x = obj_kid.x;
-		y = (obj_kid.y-sprite_get_yoffset(spr_player)*1.5);
+		x = lerp(x,obj_kid.x,0.85);
+		y = lerp(y,(obj_kid.y-sprite_get_yoffset(spr_player)*1.5),0.85);
 		if obj_kid.noMomCarry != 1{
-			momVel = global.MKdir*1.5;
+			momVel = global.MKdir*1.5*momMultiplier;
 			vspeed = -2;
 		}
 		canBeGrabbed = false; //doesnt let grab in mid air... nvm

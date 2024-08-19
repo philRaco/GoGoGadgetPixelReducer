@@ -65,3 +65,23 @@ function commitJump(){
 }
 
 #endregion
+
+#region noPauseRoom
+
+///@function noPauseRoom()
+//i love these things
+
+function noPauseRoom(){
+	//sigh!!"!"!21!!"1 {nowhere near as bad as i thought}
+
+	if (
+	    room == rmInit
+	//or
+	    //room == theEnd //temp
+	    )
+	{
+	    return true;
+	} else {
+	    return false;
+	}
+}

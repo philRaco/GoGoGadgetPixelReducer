@@ -55,6 +55,7 @@
   "resources":[
     {"id":{"name":"fnt_rtm","path":"fonts/fnt_rtm/fnt_rtm.yy",},},
     {"id":{"name":"aOload","path":"objects/aOload/aOload.yy",},},
+    {"id":{"name":"aOpause","path":"objects/aOpause/aOpause.yy",},},
     {"id":{"name":"obj_col","path":"objects/obj_col/obj_col.yy",},},
     {"id":{"name":"obj_flouer","path":"objects/obj_flouer/obj_flouer.yy",},},
     {"id":{"name":"obj_kid","path":"objects/obj_kid/obj_kid.yy",},},
@@ -73,6 +74,7 @@
     {"id":{"name":"scr_text_misc","path":"scripts/scr_text_misc/scr_text_misc.yy",},},
     {"id":{"name":"scr_visuals","path":"scripts/scr_visuals/scr_visuals.yy",},},
     {"id":{"name":"SFXjump","path":"sounds/SFXjump/SFXjump.yy",},},
+    {"id":{"name":"SFXpse","path":"sounds/SFXpse/SFXpse.yy",},},
     {"id":{"name":"SFXsmall1","path":"sounds/SFXsmall1/SFXsmall1.yy",},},
     {"id":{"name":"SFXsmall2","path":"sounds/SFXsmall2/SFXsmall2.yy",},},
     {"id":{"name":"SFXsmall3","path":"sounds/SFXsmall3/SFXsmall3.yy",},},

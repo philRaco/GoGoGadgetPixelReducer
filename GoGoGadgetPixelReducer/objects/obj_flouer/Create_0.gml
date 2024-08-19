@@ -11,6 +11,7 @@ These guys can be semisolids in the proper state! ("Jug")
 upperstance = 270;
 
 momVel = 0;
+momMultiplier = 1;
 momSD = 0.2;
 
 solid = false; //HERES MY BIG BRAIN IDEA
@@ -38,6 +39,18 @@ objSize = 1;
 #endregion
 
 #region state specific
+
+#region forBottle
+
+momMultiplier = 1.5;
+
+#endregion
+
+#region forJug
+
+
+
+#endregion
 
 #region forJug
 

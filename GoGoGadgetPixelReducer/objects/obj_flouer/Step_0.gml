@@ -91,9 +91,9 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 		#region semi solid action
 			if timIsSolid == 0{
 				if instance_exists(obj_kid){
-					if round(obj_kid.y+sprite_get_yoffset(spr_player)-1) > self.y-sprite_yoffset+7{ //funny offset of 7
+					if round(obj_kid.y+sprite_get_yoffset(spr_player)-1) > self.y-sprite_yoffset+9{ //funny offset of 9 WOKRS PERFECTLY WOW
 						stateSemiSolid = 1;
-					} else if round(obj_kid.y+sprite_get_yoffset(spr_player)) < self.y-sprite_yoffset+7{
+					} else if round(obj_kid.y+sprite_get_yoffset(spr_player)) < self.y-sprite_yoffset+9{
 						stateSemiSolid = 0;
 					}
 				}
@@ -125,6 +125,22 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 
 #region animation
 
-
+switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
+	#region //	WATER BOTTLE	//
+	case "Bottle":
+		sprite_index = spr_waterbottle;
+	break;
+	#endregion
+	#region //	WATER ITSELF	//
+	case "Water":
+		sprite_index = spr_waterflow;
+	break;
+	#endregion
+	#region //	WATER JUG		//
+	case "Jug":
+		sprite_index = spr_watertank;
+	break;
+	#endregion
+}
 
 #endregion

@@ -4,8 +4,8 @@
 draw_self();
 
 /*
-draw_rectangle(bbox_left,bbox_top,bbox_right,y+14,false);
-*/
+draw_rectangle(bbox_left,bbox_top,bbox_right,y+24,false);
+
 /*
 var kidKnowsY = obj_kid.y-sprite_get_yoffset(spr_player)*1.5;
 var nearestColLateral = 0;

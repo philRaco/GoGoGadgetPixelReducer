@@ -12,6 +12,8 @@ randomize();
 
 #macro WARMsettings working_directory + "settings.ini"
 
+#macro WARMfolder working_directory
+
 #macro ture true //SUPER important macro
 
 //gamepad buttons
@@ -126,8 +128,9 @@ global.CheckR = 0;
 global.Checkx = 0;
 global.Checky = 0;
 
-//	Room to go to
-global.roomor = noone;
+//	Room to go to + restart
+global.restartMode = 0;
+global.roomor = rm_tts;
 
 #endregion
 

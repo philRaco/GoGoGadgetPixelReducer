@@ -6,7 +6,6 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_BF01640","path":"rooms/rm_tts/rm_tts.yy",},
     {"name":"inst_3ED3F1E8","path":"rooms/rm_tts/rm_tts.yy",},
     {"name":"inst_105BDB3E","path":"rooms/rm_tts/rm_tts.yy",},
     {"name":"inst_916BD0F","path":"rooms/rm_tts/rm_tts.yy",},
@@ -30,7 +29,6 @@
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":12,"gridY":12,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v1","%Name":"inst_BF01640","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_BF01640","objectId":{"name":"obj_manager_plat","path":"objects/obj_manager_plat/obj_manager_plat.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
         {"$GMRInstance":"v1","%Name":"inst_3ED3F1E8","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3ED3F1E8","objectId":{"name":"obj_viewfollow","path":"objects/obj_viewfollow/obj_viewfollow.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":240.0,"y":112.0,},
         {"$GMRInstance":"v1","%Name":"inst_105BDB3E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_105BDB3E","objectId":{"name":"obj_col","path":"objects/obj_col/obj_col.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":264.0,"y":120.0,},
         {"$GMRInstance":"v1","%Name":"inst_916BD0F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_916BD0F","objectId":{"name":"obj_col","path":"objects/obj_col/obj_col.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":7.0,"scaleY":1.0,"x":168.0,"y":144.0,},

@@ -35,3 +35,16 @@ function debug_vardrawview(argument0,argument1,argument2){
 }
 
 #endregion
+
+#region debug_drawhitbox
+
+///@function debug_drawhitbox(left offset, top offset, right offset, bottom offset)
+//keep in mind this resets text drawign presets to default!
+
+function debug_drawhitbox(argument0, argument1, argument2, argument3){
+	scr_draw_reset();
+		draw_rectangle(bbox_left+argument0,bbox_top+argument1,bbox_right+argument2,bbox_bottom+argument3,false);
+	scr_draw_reset();
+}
+
+#endregion
