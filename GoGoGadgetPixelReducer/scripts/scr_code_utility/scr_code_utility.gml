@@ -30,6 +30,8 @@ function isInBetween2(argument0,argument1,argument2){
 function collisionLine(argument0){
 	if (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_col,false,false))
 	or 
+    (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false) != noone && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_flouer,false,false).stateSemiSolid = 0)
+	or 
     (collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false) && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false) != noone && collision_rectangle(bbox_left,bbox_top,bbox_right,y+(argument0),obj_ssolid,false,false).stateSemiSolid = 0)
 	{ //..wow that is long
 	    return true;
@@ -165,7 +167,7 @@ function followKidXGrab(){
 	//the fun shtuff
 	grabbedNextColX = collision_line(x,kidKnowsY,nearestColLateral,kidKnowsY,obj_col,false,false);
 	if !collision_line(bbox_left-2,y,bbox_right+1,y,obj_col,false,false){ //betcha i will have to update this with other shtuff later on
-		x = obj_kid.x; //will get back to ya soon
+		x = lerp(x,obj_kid.x,0.3); //will get back to ya soon
 		show_debug_message("i am")
 		//increase bounding box.?
 	} else {
@@ -173,13 +175,13 @@ function followKidXGrab(){
 			//code
 			if !isInBetween2(obj_kid.x,nearestColLateral,x){
 				show_debug_message("i am NOT left")
-				x = obj_kid.x;
+				x = lerp(x,obj_kid.x,0.3);
 			}
 		} else if instance_nearest(x,y,obj_col).x > x{
 			//code
 			if !isInBetween2(obj_kid.x,x,nearestColLateral){
 				show_debug_message("i am NOT right")
-				x = obj_kid.x;
+				x = lerp(x,obj_kid.x,0.3);
 			}
 		}
 	}

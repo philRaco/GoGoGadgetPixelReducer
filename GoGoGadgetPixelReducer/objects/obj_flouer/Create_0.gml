@@ -41,9 +41,19 @@ objSize = 1;
 
 #region forJug
 
+/*
 IDsemi = instance_create_layer(x,y,"Instances",obj_ssolid);
 IDsemi.x = x;
 IDsemi.y = y;
+*/ //lol
+
+//READDING IN SEMI SOLID CODE LOL
+
+stateSemiSolid = 0;
+
+timIsSolid = 1;
+tim = 35;
+
 
 #endregion
 
