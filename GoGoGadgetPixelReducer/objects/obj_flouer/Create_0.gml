@@ -11,13 +11,22 @@ These guys can be semisolids in the proper state! ("Jug")
 upperstance = 270;
 
 momVel = 0;
-momMultiplier = 1;
 momSD = 0.2;
 
 solid = false; //HERES MY BIG BRAIN IDEA
 
-canBeGrabbed = true;
+#endregion
 
+#region default to these even if state doesnt use variables
+canBeGrabbed = true;
+momMultiplier = 1;
+canHaveGravity = true;
+mustGoToX = 0;
+mustGoToY = 0;
+spriteDirection = 90;
+stateSemiSolid = 0;
+timIsSolid = 0;
+tim = 35;
 #endregion
 
 #region state machine (most things can be changed in create code/instance properties!)
@@ -40,18 +49,28 @@ objSize = 1;
 
 #region state specific
 
+if state == "Bottle"{
 #region forBottle
 
 momMultiplier = 1.5;
 
 #endregion
+}
 
-#region forJug
+if state == "Water"{
+#region forWater
 
+canBeGrabbed = false;
+canHaveGravity = false;
 
+mustGoToX = 2;
+mustGoToY = 0;
+spriteDirection = 0; //0 = right and then it goes from there!
 
 #endregion
+}
 
+if state == "Jug"{
 #region forJug
 
 /*
@@ -67,8 +86,7 @@ stateSemiSolid = 0;
 timIsSolid = 1;
 tim = 35;
 
-
 #endregion
-
+}
 
 #endregion

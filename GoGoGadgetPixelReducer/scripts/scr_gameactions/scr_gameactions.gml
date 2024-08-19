@@ -1,6 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
+#region scr_kid_move
+
 ///@function scr_kid_move(comparison,MaxV,SV,mod)
 
 function scr_kid_move(argument0,argument1,argument2,argument3){
@@ -47,6 +49,8 @@ function scr_kid_move(argument0,argument1,argument2,argument3){
 	}
 }
 
+#endregion
+
 #region commitJump
 
 ///@function commitJump
@@ -85,3 +89,34 @@ function noPauseRoom(){
 	    return false;
 	}
 }
+
+#endregion
+
+#region directionDpadHeld
+
+///@function directionDpadHeld()
+//I HAVE NO TIME TO WRITE THIS COMMENT
+
+function directionDpadHeld(){
+	if scr_input("left"){
+		if scr_input("up"){
+			
+		} else if scr_input("down"){
+			
+		} else if (!scr_input("up") && !scr_input("down")){
+			
+		}
+	} else if scr_input("right"){
+		if scr_input("up"){
+			
+		} else if scr_input("down"){
+			
+		} else if (!scr_input("up") && !scr_input("down")){
+			
+		}
+	} else if (!scr_input("left") && !scr_input("right")){
+		return 8;
+	}
+}
+
+#endregion

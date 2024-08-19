@@ -110,7 +110,6 @@ if instance_exists(obj_ssolid){ //REMEMBER TO CARRY OVER TO MIND !!!
 	if nearestSolidSemi != noone{
 		if place_meeting(x,y+3,obj_ssolid){
 			if nearestSolidSemi.solid == true{
-				show_debug_message(string(nearestSolidSemi))
 			    if (bbox_bottom > nearestSolidSemi.y+sprite_get_yoffset(spr_player)){
 			        y -= nearestSolidSemi.y-sprite_get_yoffset(spr_player);
 			    }
@@ -127,11 +126,13 @@ if instance_exists(obj_flouer){ //is it bugged cause of this or..? is it the obj
 	if nearestSolidSemi != noone{
 		if place_meeting(x,y+3,obj_flouer){
 			if nearestSolidSemi.solid == true{
-				show_debug_message(string(nearestSolidSemi))
 			    if (bbox_bottom > nearestSolidSemi.y+sprite_get_yoffset(spr_player)){
 			        y -= nearestSolidSemi.y-sprite_get_yoffset(spr_player);
 			    }
 			    move_contact_solid(270,12);
+				if nearestSolidSemi.momVel != 0{
+					x += nearestSolidSemi.momVel*0.9
+				}
 			    hspeed = 0;
 			    vspeed = 0;
 			}
@@ -286,6 +287,7 @@ if collision_rectangle(bbox_left,bbox_top,bbox_right,y+24,obj_flouer,false,false
 
 #endregion
 
+if lockedIn == false{ //WE'RE LOCKING IN BOYS
 #region left to right...
             // move left //
     if scr_input("left"){
@@ -321,6 +323,7 @@ if collision_rectangle(bbox_left,bbox_top,bbox_right,y+24,obj_flouer,false,false
         cantwont = 0;
     }
 #endregion
+}
 
 #region jump
 
@@ -425,8 +428,6 @@ if scr_input_released("sub-action"){
 	noMomCarry = 0;
 }
 
-show_debug_message("ist?: " + string(stopGrabbing))
-
 if (stopGrabbing == true){
 	with grabClaimed{
 		x = lerp(x,obj_kid.x,0.85);
@@ -441,7 +442,25 @@ if (stopGrabbing == true){
 	stopGrabbing = false;
 }
 
-show_debug_message(string(grabClaimed))
+#endregion
+
+#region locking in place
+
+if scr_input("sub-action2"){
+	lockedIn = true;
+}
+if scr_input_released("sub-action2"){
+	lockedIn = false;
+	DV = 0.5;
+}
+
+if lockedIn == true{
+	DV = 1;
+	DeAcc = true;
+	//animation for arrow (bouncy)
+	theIndScale = 1+(abs(sin(theIndPower*theIndTimer)))*0.5;
+	theIndTimer++;
+}
 
 #endregion
 

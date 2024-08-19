@@ -3,6 +3,10 @@
 
 draw_self();
 
+if lockedIn == true{
+	draw_sprite_ext(spr_indication_throw,indSubImage,x,y,theIndScale,theIndScale,0,c_white,1);
+}
+
 /*
 draw_rectangle(bbox_left,bbox_top,bbox_right,y+24,false);
 

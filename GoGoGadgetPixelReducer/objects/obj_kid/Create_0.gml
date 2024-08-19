@@ -89,6 +89,18 @@ noMomCarry = false;
 
 #endregion
 
+#region GOG GO GO
+
+lockedIn = false;
+indSubImage = choose(2,3);
+
+//anim lol
+theIndScale = 1;
+theIndTimer = 0;
+theIndPower = 3;
+
+#endregion
+
 #region visual
 
 depth = -5;
