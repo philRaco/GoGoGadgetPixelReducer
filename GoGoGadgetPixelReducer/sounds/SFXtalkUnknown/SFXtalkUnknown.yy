@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"SFXtalkUnknown",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":0,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.040771,
+  "name":"SFXtalkUnknown",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":32000,
+  "soundFile":"SFXtalkUnknown.wav",
+  "type":1,
+  "volume":1.0,
+}

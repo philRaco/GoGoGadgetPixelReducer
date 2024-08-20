@@ -95,27 +95,54 @@ function noPauseRoom(){
 #region directionDpadHeld
 
 ///@function directionDpadHeld()
-//I HAVE NO TIME TO WRITE THIS COMMENT
+//I HAVE NO TIME TO WRITE THIS COMMENT  return 1;
 
 function directionDpadHeld(){
 	if scr_input("left"){
 		if scr_input("up"){
-			
+			return 3; //up left
 		} else if scr_input("down"){
-			
+			return 5; //down left
 		} else if (!scr_input("up") && !scr_input("down")){
-			
+			return 4; //just left
 		}
 	} else if scr_input("right"){
 		if scr_input("up"){
-			
+			return 1; //up right
 		} else if scr_input("down"){
-			
+			return 7; //down right
 		} else if (!scr_input("up") && !scr_input("down")){
-			
+			return 0; //just right
 		}
 	} else if (!scr_input("left") && !scr_input("right")){
-		return 8;
+		if scr_input("up"){
+			return 2; //up
+		} else if scr_input("down"){
+			return 6; //down
+		} else if (!scr_input("up") && !scr_input("down")){
+			return 8; //NOTHING, i guess
+		}
+	}
+}
+
+#endregion
+
+#region dirHeldThrowResult
+
+///@function directionDpadHeld(direction based on arrow)
+//what time crunch does to a woman :3
+
+function dirHeldThrowResult(argument0){
+	switch(argument0){ //funny rotation :P
+		case 0: obj_kid.grabMomX = 1.75; obj_kid.grabMomY = -0.5; break;
+		case 1: obj_kid.grabMomX = 1.5; obj_kid.grabMomY = -2.5; break;
+		case 2: obj_kid.grabMomX = 0; obj_kid.grabMomY = -3; break;
+		case 3: obj_kid.grabMomX = -1.75; obj_kid.grabMomY = -2.5; break;
+		case 4: obj_kid.grabMomX = -1.75; obj_kid.grabMomY = -0.5; break;
+		case 5: obj_kid.grabMomX = -1.75; obj_kid.grabMomY = 0; break;
+		case 6: obj_kid.grabMomX = 0; obj_kid.grabMomY = 0; break;
+		case 7: obj_kid.grabMomX = 1.75; obj_kid.grabMomY = 0; break;
+		default: obj_kid.grabMomX = 0; obj_kid.grabMomY = 0; break;
 	}
 }
 

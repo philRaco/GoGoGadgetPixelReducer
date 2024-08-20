@@ -3,7 +3,7 @@
 
 #region global.gowon = 0;
 
-gowonAX = 4;
+gowonAX = 2;
 gowonAXb = gowonAX;
 
 ifall = noone;
@@ -21,7 +21,7 @@ if global.Check != noone{
 zoom = 1;
 zoomChange = zoom;
 
-lerpSpeed = 0.07;
+lerpSpeed = 0.02;
 lerpDir = 1;
 
 xOffsetChar = 0;

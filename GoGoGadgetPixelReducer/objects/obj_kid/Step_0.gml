@@ -103,6 +103,8 @@ if abs(global.kidV) != 0{
 
 #endregion
 
+if (state != 6 && state != 5){ //death.
+
 #region collision (what a mess.)
 
 if instance_exists(obj_ssolid){ //REMEMBER TO CARRY OVER TO MIND !!!
@@ -392,7 +394,7 @@ if (coyoteTimer != 0){
 
 #endregion
 
-#region grabbing
+#region grabbing + throwing
 
 if stopGrabbing != true{
 	if scr_input("sub-action"){
@@ -426,20 +428,34 @@ if grabClaimed != noone{
 if scr_input_released("sub-action"){
 	stopGrabbing = true;
 	noMomCarry = 0;
+	if lockedIn != false{
+		allowThrowDir = true;
+	}
+}
+
+if directionDpadHeld() != 8{
+	currentDirThrow = directionDpadHeld()
 }
 
 if (stopGrabbing == true){
 	with grabClaimed{
-		x = lerp(x,obj_kid.x,0.85);
-		y = lerp(y,(obj_kid.y-sprite_get_yoffset(spr_player)*1.5),0.85);
-		if obj_kid.noMomCarry != 1{
-			momVel = global.MKdir*1.5*momMultiplier;
-			vspeed = -2;
+		if obj_kid.allowThrowDir == false{
+			x = lerp(x,obj_kid.x,0.85);
+			y = lerp(y,(obj_kid.y-sprite_get_yoffset(spr_player)*1.5),0.85);
+			if obj_kid.noMomCarry != 1{
+				momVel = global.MKdir*1.5*momMultiplier;
+				vspeed = -2;
+			}
+		} else {
+			dirHeldThrowResult(obj_kid.currentDirThrow);
+			momVel = obj_kid.grabMomX*momMultiplier;
+			vspeed = obj_kid.grabMomY;
 		}
 		canBeGrabbed = false; //doesnt let grab in mid air... nvm
 	}
 	grabClaimed = noone;
 	stopGrabbing = false;
+	allowThrowDir = false;
 }
 
 #endregion
@@ -451,22 +467,41 @@ if scr_input("sub-action2"){
 }
 if scr_input_released("sub-action2"){
 	lockedIn = false;
-	DV = 0.5;
 }
 
 if lockedIn == true{
-	DV = 1;
 	DeAcc = true;
 	//animation for arrow (bouncy)
 	theIndScale = 1+(abs(sin(theIndPower*theIndTimer)))*0.5;
 	theIndTimer++;
+	indSubImage = currentDirThrow;
 }
 
 #endregion
 
+} else {
+
+#region your honor
+
+if state == 6{
+	room_restart(); // temp
+}
+
+#endregion
+
+#region NOT leaguge
+
+if state == 5{
+	room_goto_next(); // temp
+}
+
+#endregion
+
+}
+
 #region animations
 
-
+image_xscale = global.MKdir;
 
 #endregion
 

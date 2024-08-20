@@ -87,12 +87,18 @@ grabbedObjOffsetY = 0; //half of hieght of other object
 grabbedNextColX = noone;
 noMomCarry = false;
 
+allowThrowDir = false;
+grabMomX = 0;
+grabMomY = 0;
+
+currentDirThrow = 1;
+
 #endregion
 
 #region GOG GO GO
 
 lockedIn = false;
-indSubImage = choose(2,3);
+indSubImage = 0;
 
 //anim lol
 theIndScale = 1;
