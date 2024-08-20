@@ -464,9 +464,12 @@ if (stopGrabbing == true){
 
 if scr_input("sub-action2"){
 	lockedIn = true;
+	mask_index = spr_player_hbox_thorw;
+	makePlaceHG();
 }
 if scr_input_released("sub-action2"){
 	lockedIn = false;
+	mask_index = spr_player;
 }
 
 if lockedIn == true{

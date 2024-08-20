@@ -101,6 +101,7 @@
     {"id":{"name":"spr_doodle1","path":"sprites/spr_doodle1/spr_doodle1.yy",},},
     {"id":{"name":"spr_idea","path":"sprites/spr_idea/spr_idea.yy",},},
     {"id":{"name":"spr_indication_throw","path":"sprites/spr_indication_throw/spr_indication_throw.yy",},},
+    {"id":{"name":"spr_player_hbox_thorw","path":"sprites/spr_player_hbox_thorw/spr_player_hbox_thorw.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_semisolid","path":"sprites/spr_semisolid/spr_semisolid.yy",},},
     {"id":{"name":"spr_starbounce","path":"sprites/spr_starbounce/spr_starbounce.yy",},},

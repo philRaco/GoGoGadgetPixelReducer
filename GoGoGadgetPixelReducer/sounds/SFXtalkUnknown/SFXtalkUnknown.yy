@@ -12,8 +12,8 @@
   "duration":0.040771,
   "name":"SFXtalkUnknown",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Atmosphere",
+    "path":"folders/Sounds/Atmosphere.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

@@ -34,6 +34,14 @@ tim = 35;
 state = "None";
 stateHold = "toBottle";
 objSize = 1;
+objTargetSize = objSize;
+
+changingWith = noone;
+
+currChanging = false;
+stopChanging = false;
+
+initChangeVars = false;
 
 /*
 "None"

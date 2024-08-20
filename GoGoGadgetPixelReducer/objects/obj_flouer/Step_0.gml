@@ -22,15 +22,19 @@ if canHaveGravity == true{
 			}
 		#endregion
 	} else {
-	    if vspeed <= -4{
-	        gravity = 1.2/4;
-	    }
-	    if (vspeed >= -3.9 && vspeed < 2){
-	        gravity = 0.635/4;
-	    }
-	    if vspeed >= 2{
-	        gravity = 1.3/4;
-	    }
+		if currChanging == false{
+		    if vspeed <= -4{
+		        gravity = 1.2/4;
+		    }
+		    if (vspeed >= -3.9 && vspeed < 2){
+		        gravity = 0.635/4;
+		    }
+		    if vspeed >= 2{
+		        gravity = 1.3/4;
+		    }
+		} else {
+			gravity = 0.7/4;
+		}
 	}
 }
 
@@ -77,6 +81,8 @@ makePlaceHG(); //huh.
 #endregion
 
 #endregion
+
+if currChanging != true{
 
 #region states (ACTIONS.)
 
@@ -157,6 +163,61 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 }
 
 #endregion
+
+image_blend = c_white; //debug
+
+} else {
+
+image_blend = c_red; //debug
+
+changingWith = collision_rectangle(bbox_left-2,bbox_top-2,bbox_right+2,bbox_bottom+3,obj_changer,false,false);
+
+if changingWith == noone{
+	stopChanging = true;
+}
+
+if stopChanging == true{
+	
+#region MADdddE YOURSL
+
+switch(stateHold){
+	case "toBottle":
+		stateHold = "toJug";
+	break;
+	case "toJug":
+		stateHold = "toBottle";
+	break;
+}
+stopChanging = false;
+currChanging = false;
+
+#endregion
+
+} else { //in chagning phase
+	
+	if initChangeVars != false{ //do funny actions
+		switch(stateHold){
+			case "toBottle":
+				
+			break;
+			case "toJug":
+				
+			break;
+		}
+		objSize = lerp(objSize,objTargetSize,0.2);
+	} else { //!= else
+		if changingWith.state == "Grow"{ //GROW OBJECT
+			if objSize <= 1{
+				objTargetSize *= 2;
+			}
+		} else if changingWith.state == "Shrink"{ //SHRINK OBJECT
+			
+		}
+		initChangeVars = false;
+	}
+}
+
+}
 
 #region animation
 
