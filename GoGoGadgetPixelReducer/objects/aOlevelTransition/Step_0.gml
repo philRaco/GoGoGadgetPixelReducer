@@ -7,5 +7,19 @@ if collision_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,obj_kid,false,f
 }
 
 if global.timeToTransition == 1{
-	room_goto(global.romoor)
+	if transitionDelay > 0{
+		transitionDelay--;
+	} else {
+		switch(transState){
+			case 0:
+				instance_destroy(obj_kid);
+				transitionDelay = 60;
+			break;
+			case 1:
+				room_goto(global.romoor);
+				transitionDelay = 60;
+			break;
+		}
+		transState++;
+	}
 }

@@ -1,19 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_portfollow",
+  "%Name":"obj_neutral_camera",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_portfollow",
+  "name":"obj_neutral_camera",
   "overriddenProperties":[],
   "parent":{
     "name":"Systems",
     "path":"folders/Objects/Systems.yy",
   },
   "parentObjectId":null,
-  "persistent":true,
+  "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -31,9 +30,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_viewcenter",
-    "path":"sprites/spr_viewcenter/spr_viewcenter.yy",
+    "name":"spr_camera_new_center",
+    "path":"sprites/spr_camera_new_center/spr_camera_new_center.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

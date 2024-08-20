@@ -14,3 +14,14 @@ if global.playerDeath == 1{
 		room_restart();
 	}
 }
+
+if global.noKid == 1{
+	if kidTimer > 0{
+		kidTimer--;
+	} else {
+		instance_create_layer(x,y,"Instances",obj_kid);
+		obj_kid.x = global.Checkx;
+		obj_kid.y = global.Checky;
+		global.noKid = 0;
+	}
+}

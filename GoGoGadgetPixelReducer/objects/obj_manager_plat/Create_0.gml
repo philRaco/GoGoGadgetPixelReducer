@@ -12,11 +12,13 @@ global.hAv = 1;
 
 global.timeToTransition = 0;
 global.playerDeath = 0;
+global.noKid = 1;
 
 if instance_exists(obj_col){
     global.FloorPLAT = (instance_nearest(x,y+(view_hport[0]/2),obj_col).y-3);
 }
 
 restartAutoTimer = 90;
+kidTimer = 65;
 
 audio_sound_pitch(SFXjump,1);

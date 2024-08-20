@@ -1,4 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-lockMeIn = noone;
+/*MUST ALWAYS CHANGE FOR EACH ONE*/
+
+location = "first";
