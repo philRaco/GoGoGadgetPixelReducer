@@ -7,6 +7,11 @@ if lockedIn == true{
 	draw_sprite_ext(spr_indication_throw,indSubImage,x,y,theIndScale,theIndScale,0,c_white,1);
 }
 
+if grabClaimed != noone{
+	debug_vardraw(y,-32);
+	debug_vardraw(grabClaimed.y,-16);
+}
+
 /*
 draw_rectangle(bbox_left,bbox_top,bbox_right,y+24,false);
 

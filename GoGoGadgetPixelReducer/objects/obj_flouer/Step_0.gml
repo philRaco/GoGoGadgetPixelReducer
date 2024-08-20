@@ -4,7 +4,7 @@
 
 #region gravity
 
-if canHaveGravity == true{
+if (canHaveGravity == true){
 	if !place_free(x,y+1){
 	    gravity = 0;
 	
@@ -34,6 +34,9 @@ if canHaveGravity == true{
 		    }
 		} else {
 			gravity = 0.7/4;
+			if (wasThrownTowards == 0 || wasThrownTowards == 4){
+				vspeed = lerp(vspeed,0,0.5);
+			}
 		}
 	}
 }
@@ -59,7 +62,9 @@ if place_meeting(x+momVel,y,obj_col){
     hspeed = 0;
 }
 
-x += momVel; //VERY IMPORTANT!
+if state != "Water"{
+	x += momVel; //VERY IMPORTANT!
+}
 
 //snap cause i'm close
 if (vspeed > 0) {
@@ -68,7 +73,9 @@ if (vspeed > 0) {
     {
         nearObjectSnapMK();
         vspeed = 0; //test?
-		canBeGrabbed = true;
+		if state != "Water"{
+			canBeGrabbed = true;
+		}
     }
 }
 
@@ -81,8 +88,6 @@ makePlaceHG(); //huh.
 #endregion
 
 #endregion
-
-if currChanging != true{
 
 #region states (ACTIONS.)
 
@@ -98,8 +103,15 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 	#region //	WATER ITSELF	//
 	case "Water":
 		solid = false;
+		jugOrBottleThrown(wasThrownTowards);
 		x += mustGoToX;
 		y += mustGoToY;
+		canHaveGravity = false;
+		canBeGrabbed = false;
+		if vspeed != 0{
+			vspeed = 0;
+		}
+		hspeed = 0;
 		if
 			collision_rectangle(bbox_left+mustGoToX,bbox_top+mustGoToY,bbox_right+mustGoToX,bbox_bottom+mustGoToY,obj_col,false,false)
 		{
@@ -161,8 +173,10 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 	break;
 	#endregion
 }
-
+	
 #endregion
+
+if currChanging != true{
 
 image_blend = c_white; //debug
 
@@ -176,26 +190,66 @@ if changingWith == noone{
 	stopChanging = true;
 }
 
-if stopChanging == true{
+if stopChanging == true{ //(step 3)
 	
 #region MADdddE YOURSL
 
-switch(stateHold){
-	case "toBottle":
-		stateHold = "toJug";
+//IM [UHHH] MYSELF PLEASE LET THE [PLACE] BE FREE
+
+if (iMust == "Grow" && state == "Water"){ //"grow" into item
+	switch(stateHold){
+		case "toBottle":
+			stateHold = "toJug";
+			state = "Bottle";
+		break;
+		case "toJug":
+			stateHold = "toBottle";
+			state = "Jug";
+		break;
+	}
+}
+if (iMust == "Shrink" && state != "Water"){ //after shrink turn into water if small enough
+	if objTargetSize < 1{
+		state = "Water";
+		objSize = 1;
+		objTargetSize = 1;
+		jugOrBottleThrown();
+		if wasThrownTowards == 0 || wasThrownTowards == 4{
+			mustGoToY = 0;
+		}
+	}
+}
+
+//			state specific defaulting			//
+switch("state"){
+	case "Bottle":
+		canBeGrabbed = true;
+		canHaveGravity = true;
+		momMultiplier = 1.5;
 	break;
-	case "toJug":
-		stateHold = "toBottle";
+	case "Water":
+		canBeGrabbed = false;
+		canHaveGravity = false;
+		momMultiplier = 1;
+		momVel = 0;
+		vspeed = 0;
+		waterMakeDirection(wasThrownTowards);
+	break;
+	case "Jug":
+		canBeGrabbed = true;
+		canHaveGravity = true;
+		momMultiplier = 1;
 	break;
 }
+
 stopChanging = false;
 currChanging = false;
 
 #endregion
 
 } else { //in chagning phase
-	
-	if initChangeVars != false{ //do funny actions
+	if initChangeVars != false{ //do funny actions (step 2, continuous until exit)
+		/*
 		switch(stateHold){
 			case "toBottle":
 				
@@ -204,14 +258,40 @@ currChanging = false;
 				
 			break;
 		}
+		*/
 		objSize = lerp(objSize,objTargetSize,0.2);
 	} else { //!= else
-		if changingWith.state == "Grow"{ //GROW OBJECT
-			if objSize <= 1{
-				objTargetSize *= 2;
+		if changingWith.state == "Grow"{ //GROW OBJECT (step 1)
+			switch(state){
+				case "Bottle":
+					if objSize <= 1{
+						objTargetSize *= 2;
+					}
+				break;
+				case "Jug":
+					if objSize <= 1{
+						objTargetSize *= 2;
+					}
+				break;
 			}
-		} else if changingWith.state == "Shrink"{ //SHRINK OBJECT
-			
+			iMust = "Grow";
+		} else if changingWith.state == "Shrink"{ //SHRINK OBJECT (step 1)
+			if objSize >= 2{
+				objTargetSize *= 0.5;
+			} else if objSize <= 1{
+				switch(state){
+					case "Bottle":
+						objTargetSize = 0.5;
+					break;
+					case "Water":
+						objTargetSize = 1;
+					break;
+					case "Jug":
+						objTargetSize = 0.5;
+					break;
+				}
+			}
+			iMust = "Shrink";
 		}
 		initChangeVars = false;
 	}

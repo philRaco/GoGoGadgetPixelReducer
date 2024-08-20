@@ -134,16 +134,58 @@ function directionDpadHeld(){
 
 function dirHeldThrowResult(argument0){
 	switch(argument0){ //funny rotation :P
-		case 0: obj_kid.grabMomX = 1.75; obj_kid.grabMomY = -0.5; break;
+		case 0: obj_kid.grabMomX = 4; obj_kid.grabMomY = -0.5; break;
 		case 1: obj_kid.grabMomX = 1.5; obj_kid.grabMomY = -2.5; break;
-		case 2: obj_kid.grabMomX = 0; obj_kid.grabMomY = -3; break;
-		case 3: obj_kid.grabMomX = -1.75; obj_kid.grabMomY = -2.5; break;
-		case 4: obj_kid.grabMomX = -1.75; obj_kid.grabMomY = -0.5; break;
-		case 5: obj_kid.grabMomX = -1.75; obj_kid.grabMomY = 0; break;
+		case 2: obj_kid.grabMomX = 0; obj_kid.grabMomY = -4; break;
+		case 3: obj_kid.grabMomX = -4; obj_kid.grabMomY = -2.5; break;
+		case 4: obj_kid.grabMomX = -4; obj_kid.grabMomY = -0.5; break;
+		case 5: obj_kid.grabMomX = -4; obj_kid.grabMomY = 0; break;
 		case 6: obj_kid.grabMomX = 0; obj_kid.grabMomY = 0; break;
-		case 7: obj_kid.grabMomX = 1.75; obj_kid.grabMomY = 0; break;
+		case 7: obj_kid.grabMomX = 4; obj_kid.grabMomY = 0; break;
 		default: obj_kid.grabMomX = 0; obj_kid.grabMomY = 0; break;
 	}
 }
 
 #endregion
+
+#region jugOrBottleThrown
+
+///@function jugOrBottleThrown(direction based on arrow)
+//what time crunch does to a woman :3
+
+function jugOrBottleThrown(argument0){
+	switch(argument0){ //funny rotation :P always 2 !! ???????????
+		case 0: mustGoToX = -2; mustGoToY = 0; break;
+		case 1: mustGoToX = 2; mustGoToY = -2; break;
+		case 2: mustGoToX = 0; mustGoToY = -2; break;
+		case 3: mustGoToX = -2; mustGoToY = -2; break;
+		case 4: mustGoToX = 2; mustGoToY = 0; break;
+		case 5: mustGoToX = -2; mustGoToY = 2; break;
+		case 6: mustGoToX = 0; mustGoToY = 2; break;
+		case 7: mustGoToX = 2; mustGoToY = 2; break;
+		default: mustGoToX = 2; mustGoToY = -0.25; break;
+	}
+}
+
+#endregion/**/
+
+#region jugOrBottleThrown
+
+///@function jugOrBottleThrown(direction based on arrow)
+//what time crunch does to a woman :3
+
+function waterMakeDirection(argument0){
+	switch(argument0){ //funny rotation :P always 2 !!
+		case 0: spriteDirection = 0; break;
+		case 1: spriteDirection = 45; break;
+		case 2: spriteDirection = 90; break;
+		case 3: spriteDirection = 135; break;
+		case 4: spriteDirection = 180; break;
+		case 5: spriteDirection = 225; break;
+		case 6: spriteDirection = 270; break;
+		case 7: spriteDirection = 315; break;
+		default: spriteDirection = 90; break;
+	}
+}
+
+#endregion/**/

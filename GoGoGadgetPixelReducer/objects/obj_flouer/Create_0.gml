@@ -37,6 +37,9 @@ objSize = 1;
 objTargetSize = objSize;
 
 changingWith = noone;
+iMust = "Grow";
+
+wasThrownTowards = 1;
 
 currChanging = false;
 stopChanging = false;

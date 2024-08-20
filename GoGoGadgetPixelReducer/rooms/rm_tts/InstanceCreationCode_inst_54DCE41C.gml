@@ -1,1 +1,1 @@
-state = "Grow"
+state = "Shrink"

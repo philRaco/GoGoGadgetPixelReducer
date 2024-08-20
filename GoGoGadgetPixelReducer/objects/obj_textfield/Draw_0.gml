@@ -11,7 +11,13 @@ withSep = ((sprite_get_width(spr_idea)-12)/2);
 #region ///daStar
 
 if (displayStar == true){
-    draw_sprite_ext(spr_starbounce,floor(starFrame),view_xport[0]+nofset,view_yport[0]+nicer,1,1,0,c_white,dalpha);
+	if instance_exists(createdby){
+		if createdby.allowTextSkip == true{
+			draw_sprite_ext(spr_starbounce,floor(starFrame),view_xport[0]+nofset,view_yport[0]+nicer,1,1,0,c_white,dalpha);
+		}
+	} else {
+		draw_sprite_ext(spr_starbounce,floor(starFrame),view_xport[0]+nofset,view_yport[0]+nicer,1,1,0,c_white,dalpha);
+	}
 }
 
 #endregion

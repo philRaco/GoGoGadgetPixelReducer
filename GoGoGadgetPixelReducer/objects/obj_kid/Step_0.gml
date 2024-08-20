@@ -401,7 +401,9 @@ if stopGrabbing != true{
 		if grabClaimed == noone{
 			//can grab water
 			if collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false){
-				grabClaimed = collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false);
+				if collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false).state != "Water"{
+					grabClaimed = collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false);
+				}
 			}
 		}
 	}
@@ -409,11 +411,16 @@ if stopGrabbing != true{
 
 if grabClaimed != noone{
 	if scr_input("sub-action"){
-		if isInBetween2(x, grabClaimed.bbox_left-2, grabClaimed.bbox_right+1){ // if kid's x in between area of box when its close to wall
-			with grabClaimed{
-				followKidXGrab(); //follow Player on X axis (lower)
-				y = lerp(y,(obj_kid.y-sprite_get_yoffset(spr_player)*1.5),0.4); // follow player on Y Axis (UPPER)
-				vspeed = obj_kid.vspeed;
+		if !(y > grabClaimed.y+32){
+			if isInBetween2(x, grabClaimed.bbox_left-2, grabClaimed.bbox_right+1){ // if kid's x in between area of box when its close to wall
+				with grabClaimed{
+					followKidXGrab(); //follow Player on X axis (lower)
+					y = lerp(y,(obj_kid.y-sprite_get_yoffset(spr_player)*1.5),0.4); // follow player on Y Axis (UPPER)
+					vspeed = obj_kid.vspeed;
+				}
+			} else {
+				stopGrabbing = true;
+				noMomCarry = 1;
 			}
 		} else {
 			stopGrabbing = true;
@@ -435,9 +442,22 @@ if scr_input_released("sub-action"){
 
 if directionDpadHeld() != 8{
 	currentDirThrow = directionDpadHeld()
+} else {
+	switch(global.MKdir){
+		case -1: currentDirThrow = 0; break;
+		case 1: currentDirThrow = 4; break;
+	}
 }
 
 if (stopGrabbing == true){
+	if directionDpadHeld() != 8{
+		currentDirThrow = directionDpadHeld()
+	} else {
+		switch(global.MKdir){
+			case -1: currentDirThrow = 0; break;
+			case 1: currentDirThrow = 4; break;
+		}
+	}
 	with grabClaimed{
 		if obj_kid.allowThrowDir == false{
 			x = lerp(x,obj_kid.x,0.85);
@@ -452,6 +472,7 @@ if (stopGrabbing == true){
 			vspeed = obj_kid.grabMomY;
 		}
 		canBeGrabbed = false; //doesnt let grab in mid air... nvm
+		wasThrownTowards = obj_kid.currentDirThrow;
 	}
 	grabClaimed = noone;
 	stopGrabbing = false;
