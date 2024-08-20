@@ -3,7 +3,7 @@
 
 pitchChange = random_range(0.2,0.8);
 
-if scr_input_pressed("action"){ //THIS WILL BE USED FOR CREATING TEXTBOXES!
+if (scr_input_pressed("action") || autoStart == true){ //THIS WILL BE USED FOR CREATING TEXTBOXES!
     if (meBox == noone){
         meBox = instance_create_layer(x,y,"Instances",obj_textfield);
         meBox.myText = weText;
@@ -11,6 +11,7 @@ if scr_input_pressed("action"){ //THIS WILL BE USED FOR CREATING TEXTBOXES!
         meBox.createdby = id;
         meBox.partText = ".";
         meBox.canTri = disableTri;
+		meBox.myAlignment = weAlignment;
 		alarm[0] = 1;
 		exit;
     } else {

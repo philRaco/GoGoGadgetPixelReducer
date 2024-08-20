@@ -50,13 +50,13 @@ global.GP = 0; //0 = keyb, 1 = gamepad
 
 ini_open(WARMinputkey);
     if !ini_section_exists("inputkey"){
-        ini_write_real("inputkey","left",ord("A"));
-        ini_write_real("inputkey","right",ord("D"));
-        ini_write_real("inputkey","up",ord("W"));
-        ini_write_real("inputkey","down",ord("S"));
-        ini_write_real("inputkey","action",ord("I"));
-        ini_write_real("inputkey","sub-action",ord("U"));
-        ini_write_real("inputkey","sub-action2",ord("O"));
+        ini_write_real("inputkey","left",vk_left);
+        ini_write_real("inputkey","right",vk_right);
+        ini_write_real("inputkey","up",vk_up);
+        ini_write_real("inputkey","down",vk_down);
+        ini_write_real("inputkey","action",vk_space);
+        ini_write_real("inputkey","sub-action",ord("X"));
+        ini_write_real("inputkey","sub-action2",ord("C"));
         ini_write_real("inputkey","pause",vk_enter);
     }
 	global.Kin[0] = ini_read_real("inputkey","left",ord("A"));
@@ -103,6 +103,11 @@ ini_open(WARMsettings)
 ini_close();
 
 scr_res();
+
+if (window_get_caption() != "the Story of my Sketchy Life"){
+	window_set_caption("the Story of my Sketchy Life");
+}
+window_set_caption("the Story of my Sketchy Life");
 
 #endregion
 

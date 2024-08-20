@@ -4,8 +4,12 @@
 meBox = noone;
 pitchnus = 0;
 
+autoStart = false;
+
 weText[0] = "f";
 pitchChange = random_range(0.0,0.4);
+
+weAlignment = fa_left;
 
 creationCodeMessage = "...";
 

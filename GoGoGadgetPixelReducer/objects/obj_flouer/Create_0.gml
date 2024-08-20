@@ -15,6 +15,8 @@ momSD = 0.2;
 
 solid = false; //HERES MY BIG BRAIN IDEA
 
+hanged = false;
+
 #endregion
 
 #region default to these even if state doesnt use variables

@@ -22,21 +22,27 @@ if (canHaveGravity == true){
 			}
 		#endregion
 	} else {
-		if currChanging == false{
-		    if vspeed <= -4{
-		        gravity = 1.2/4;
-		    }
-		    if (vspeed >= -3.9 && vspeed < 2){
-		        gravity = 0.635/4;
-		    }
-		    if vspeed >= 2{
-		        gravity = 1.3/4;
-		    }
-		} else {
-			gravity = 0.7/4;
-			if (wasThrownTowards == 0 || wasThrownTowards == 4){
-				vspeed = lerp(vspeed,0,0.5);
+		if hanged == false{
+			if currChanging == false{
+			    if vspeed <= -4{
+			        gravity = 1.2/4;
+			    }
+			    if (vspeed >= -3.9 && vspeed < 2){
+			        gravity = 0.635/4;
+			    }
+			    if vspeed >= 2{
+			        gravity = 1.3/4;
+			    }
+			} else {
+				gravity = 0.7/4;
+				if (wasThrownTowards == 0 || wasThrownTowards == 4){
+					vspeed = lerp(vspeed,0,0.5);
+				}
 			}
+		} else {
+			gravity = 0;
+			vspeed = 0;
+			momVel = 0;
 		}
 	}
 }
@@ -98,6 +104,18 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 		if place_meeting(x,y,obj_water_particle){
 			momVel = instance_nearest(x,y,obj_water_particle).momVel*0.75;
 		}
+		if (instance_exists(obj_hanger) && instance_exists(obj_kid)){
+			if (place_meeting(x,y,obj_hanger) && obj_kid.iAmGrabbing == false){
+				if vspeed >= 0{
+					vspeed = 0;
+					y = lerp(y,obj_hanger.y,0.8);
+					x = lerp(x,obj_hanger.x,0.2);
+				}
+				hanged = true;
+			} else {
+				hanged = false;
+			}
+		}
 	break;
 	#endregion
 	#region //	WATER ITSELF	//
@@ -138,6 +156,18 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 	#endregion
 	#region //	WATER JUG		//
 	case "Jug":
+		if (instance_exists(obj_hanger) && instance_exists(obj_kid)){
+			if (place_meeting(x,y,obj_hanger) && obj_kid.iAmGrabbing == false){
+				if vspeed >= 0{
+					vspeed = 0;
+					y = lerp(y,obj_hanger.y,0.8);
+					x = lerp(x,obj_hanger.x,0.2);
+				}
+				hanged = true;
+			} else {
+				hanged = false;
+			}
+		}
 		if place_meeting(x,y,obj_water_particle){
 			momVel = instance_nearest(x,y,obj_water_particle).momVel*0.75;
 		}
@@ -208,6 +238,9 @@ if (iMust == "Grow" && state == "Water"){ //"grow" into item
 			state = "Jug";
 		break;
 	}
+	if mustGoToY != 0{
+		vspeed = sign(mustGoToY)*7;
+	}
 }
 if (iMust == "Shrink" && state != "Water"){ //after shrink turn into water if small enough
 	if objTargetSize < 1{
@@ -260,25 +293,31 @@ currChanging = false;
 			break;
 		}
 		*/
-		objSize = lerp(objSize,objTargetSize,0.2);
+		
 	} else { //!= else
 		if changingWith.state == "Grow"{ //GROW OBJECT (step 1)
 			switch(state){
 				case "Bottle":
-					if objSize <= 1{
-						objTargetSize *= 2;
+					if objSize == 0.5{
+						objTargetSize = 1;
+					}
+					if objSize == 1{
+						objTargetSize = 1.5;
 					}
 				break;
 				case "Jug":
-					if objSize <= 1{
-						objTargetSize *= 2;
+					if objSize == 0.5{
+						objTargetSize = 1;
+					}
+					if objSize == 1{
+						objTargetSize = 1.5;
 					}
 				break;
 			}
 			iMust = "Grow";
 		} else if changingWith.state == "Shrink"{ //SHRINK OBJECT (step 1)
-			if objSize >= 2{
-				objTargetSize *= 0.5;
+			if objSize >= 1.5{
+				objTargetSize = 1;
 			} else if objSize <= 1{
 				switch(state){
 					case "Bottle":
@@ -303,6 +342,8 @@ currChanging = false;
 #endregion
 
 #region animation
+
+objSize = lerp(objSize,objTargetSize,0.2);
 
 image_xscale = objSize;
 image_yscale = objSize;

@@ -405,6 +405,7 @@ if stopGrabbing != true{
 					grabClaimed = collision_line(x,y,x+(12*global.MKdir),y,obj_flouer,false,false);
 				}
 			}
+			iAmGrabbing = true;
 		}
 	}
 }
@@ -418,6 +419,7 @@ if grabClaimed != noone{
 					y = lerp(y,(obj_kid.y-sprite_get_yoffset(spr_player)*1.5),0.4); // follow player on Y Axis (UPPER)
 					vspeed = obj_kid.vspeed;
 				}
+				iAmGrabbing = true;
 			} else {
 				stopGrabbing = true;
 				noMomCarry = 1;
@@ -443,20 +445,14 @@ if scr_input_released("sub-action"){
 if directionDpadHeld() != 8{
 	currentDirThrow = directionDpadHeld()
 } else {
-	switch(global.MKdir){
-		case -1: currentDirThrow = 0; break;
-		case 1: currentDirThrow = 4; break;
-	}
+	currentDirThrow = 6;
 }
 
 if (stopGrabbing == true){
 	if directionDpadHeld() != 8{
 		currentDirThrow = directionDpadHeld()
 	} else {
-		switch(global.MKdir){
-			case -1: currentDirThrow = 0; break;
-			case 1: currentDirThrow = 4; break;
-		}
+		currentDirThrow = 6;
 	}
 	with grabClaimed{
 		if obj_kid.allowThrowDir == false{
@@ -477,6 +473,7 @@ if (stopGrabbing == true){
 	grabClaimed = noone;
 	stopGrabbing = false;
 	allowThrowDir = false;
+	iAmGrabbing = false;
 }
 
 #endregion

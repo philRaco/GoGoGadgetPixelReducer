@@ -93,6 +93,8 @@ grabMomY = 0;
 
 currentDirThrow = 1;
 
+iAmGrabbing = false;
+
 #endregion
 
 #region GOG GO GO

@@ -35,6 +35,8 @@ partText is the text that the player can see ! !
 countTexter = 0;
 maxAmountText = 3;
 
+myAlignment = fa_left;
+
 myText[countTexter] = "This is a world.";
 
 currText = 0;

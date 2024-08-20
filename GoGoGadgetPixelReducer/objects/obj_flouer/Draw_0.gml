@@ -3,5 +3,5 @@
 
 draw_self();
 
-debug_vardraw(wasThrownTowards,-16);
-debug_vardraw(vspeed,-32);
+debug_vardraw(objTargetSize,-16);
+debug_vardraw(objSize,-32);

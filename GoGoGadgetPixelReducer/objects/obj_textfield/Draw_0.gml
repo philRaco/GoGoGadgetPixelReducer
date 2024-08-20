@@ -25,7 +25,7 @@ if (displayStar == true){
 #region ///best text thingy
 
 draw_set_font_custom("default");
-draw_set_halign(fa_left);
+draw_set_halign(myAlignment);
 draw_set_valign(fa_top);
 draw_set_alpha(dalpha);
 

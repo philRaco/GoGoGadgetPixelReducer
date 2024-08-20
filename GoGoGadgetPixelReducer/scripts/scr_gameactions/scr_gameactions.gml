@@ -80,6 +80,8 @@ function noPauseRoom(){
 
 	if (
 	    room == rmInit
+	or
+	    room == rm_tts
 	//or
 	    //room == theEnd //temp
 	    )
