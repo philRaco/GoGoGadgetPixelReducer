@@ -1,5 +1,5 @@
 allowTextSkip = false;
-creationCodeMessage = "the Story of my Sketchy Life";
+creationCodeMessage = "Seeing these doodles brings me back. \nAlthough... I scratched them out?";
 autoStart = true;
 weAlignment = fa_center;
 

@@ -1,5 +1,5 @@
 allowTextSkip = false;
-creationCodeMessage = "the Story of my Sketchy Life";
+creationCodeMessage = "My notebooks looks quite\n dirty too.";
 autoStart = true;
 weAlignment = fa_center;
 

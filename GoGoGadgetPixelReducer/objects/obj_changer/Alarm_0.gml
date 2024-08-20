@@ -6,6 +6,6 @@ switch(state){
 		sprite_index = spr_dirt1;
 	break;
 	case "Shrink":
-		sprite_index = spr_doodle1;
+		sprite_index = choose(spr_doodle1,spr_doodle2,spr_doodle3);
 	break;
 }

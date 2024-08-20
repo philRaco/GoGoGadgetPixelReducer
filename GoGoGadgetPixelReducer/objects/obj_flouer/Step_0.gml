@@ -45,6 +45,8 @@ if (canHaveGravity == true){
 			momVel = 0;
 		}
 	}
+} else {
+	gravity = 0;
 }
 
 #endregion
@@ -85,6 +87,8 @@ if (vspeed > 0) {
     }
 }
 
+vspeed = min(vspeed,6.2);
+
 #endregion
 
 #region unstucking!
@@ -116,6 +120,7 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 				hanged = false;
 			}
 		}
+		canHaveGravity = true;
 	break;
 	#endregion
 	#region //	WATER ITSELF	//
@@ -156,6 +161,7 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 	#endregion
 	#region //	WATER JUG		//
 	case "Jug":
+		canHaveGravity = true;
 		if (instance_exists(obj_hanger) && instance_exists(obj_kid)){
 			if (place_meeting(x,y,obj_hanger) && obj_kid.iAmGrabbing == false){
 				if vspeed >= 0{
@@ -212,10 +218,12 @@ if currChanging != true{
 image_blend = c_white; //debug
 
 } else {
+	
+if vspeed < 0{
+	canHaveGravity = false;
+}
 
-image_blend = c_red; //debug
-
-changingWith = collision_rectangle(bbox_left-2,bbox_top-2,bbox_right+2,bbox_bottom+3,obj_changer,false,false);
+changingWith = collision_rectangle(bbox_left-4,bbox_top-4,bbox_right+4,bbox_bottom+4,obj_changer,false,false);
 
 if changingWith == noone{
 	stopChanging = true;
@@ -232,10 +240,12 @@ if (iMust == "Grow" && state == "Water"){ //"grow" into item
 		case "toBottle":
 			stateHold = "toJug";
 			state = "Bottle";
+			canHaveGravity = true;
 		break;
 		case "toJug":
 			stateHold = "toBottle";
 			state = "Jug";
+			canHaveGravity = true;
 		break;
 	}
 	if mustGoToY != 0{
@@ -245,6 +255,14 @@ if (iMust == "Grow" && state == "Water"){ //"grow" into item
 if (iMust == "Shrink" && state != "Water"){ //after shrink turn into water if small enough
 	if objTargetSize < 1{
 		state = "Water";
+		if instance_exists(obj_kid){
+			if obj_kid.iAmGrabbing != false{
+				with obj_kid{
+					stopGrabbing = true;
+					iAmGrabbing = false;
+				}
+			}
+		}
 		objSize = 1;
 		objTargetSize = 1;
 		jugOrBottleThrown();
@@ -265,7 +283,6 @@ switch("state"){
 		canBeGrabbed = false;
 		canHaveGravity = false;
 		momMultiplier = 1;
-		momVel = 0;
 		vspeed = 0;
 		waterMakeDirection(wasThrownTowards);
 	break;

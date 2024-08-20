@@ -157,11 +157,11 @@ function dirHeldThrowResult(argument0){
 
 function jugOrBottleThrown(argument0){
 	switch(argument0){ //funny rotation :P always 2 !! ???????????
-		case 0: mustGoToX = -2; mustGoToY = 0; break;
+		case 0: mustGoToX = 2; mustGoToY = 0; break;
 		case 1: mustGoToX = 2; mustGoToY = -2; break;
 		case 2: mustGoToX = 0; mustGoToY = -2; break;
 		case 3: mustGoToX = -2; mustGoToY = -2; break;
-		case 4: mustGoToX = 2; mustGoToY = 0; break;
+		case 4: mustGoToX = -2; mustGoToY = 0; break;
 		case 5: mustGoToX = -2; mustGoToY = 2; break;
 		case 6: mustGoToX = 0; mustGoToY = 2; break;
 		case 7: mustGoToX = 2; mustGoToY = 2; break;

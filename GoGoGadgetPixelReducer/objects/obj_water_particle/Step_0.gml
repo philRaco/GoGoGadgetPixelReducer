@@ -10,6 +10,9 @@ if pop == true{
 	} else {
 		instance_destroy();
 	}
+	vspeed = 0
+	hspeed = 0;
+	momVel = 0;
 }
 
 if (collision_rectangle(bbox_left+(momVel*2.5),y+sprite_yoffset-4,bbox_right+(momVel*2.5),y+sprite_yoffset-2,obj_col,false,false) || y > room_height+72){

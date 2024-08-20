@@ -37,6 +37,8 @@ maxAmountText = 3;
 
 myAlignment = fa_left;
 
+depth = -10;
+
 myText[countTexter] = "This is a world.";
 
 currText = 0;

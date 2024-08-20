@@ -29,23 +29,24 @@ if room != rm_tts{
 			kidTimer--;
 		} else {
 			instance_create_layer(x,y,"Instances",obj_kid);
+			obj_kid.vspeed = 8;
 			obj_kid.x = global.Checkx;
 			obj_kid.y = global.Checky;
 			global.noKid = 0;
 		}
 	}
+	
+	if global.playerDeath != 1{
+		if bgSwitchTimer < 45{
+			bgSwitchTimer++
+		} else {
+			bgSwitchTimer = 45; 
+			bgMode = 1; //light
+		}
+	}
 }
 
 #endregion
-
-if global.playerDeath != 1{
-	if bgSwitchTimer < 45{
-		bgSwitchTimer++
-	} else {
-		bgSwitchTimer = 45; 
-		bgMode = 1; //light
-	}
-}
 
 switch(bgMode){
 	case 0: bgToDraw = bg_behind_light; break;

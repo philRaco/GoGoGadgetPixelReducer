@@ -9,8 +9,8 @@
   "name":"obj_viewfollow",
   "overriddenProperties":[],
   "parent":{
-    "name":"Systems",
-    "path":"folders/Objects/Systems.yy",
+    "name":"UI",
+    "path":"folders/Objects/UI.yy",
   },
   "parentObjectId":null,
   "persistent":true,

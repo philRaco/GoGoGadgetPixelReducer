@@ -9,8 +9,8 @@
   "name":"obj_portfollow",
   "overriddenProperties":[],
   "parent":{
-    "name":"Systems",
-    "path":"folders/Objects/Systems.yy",
+    "name":"UI",
+    "path":"folders/Objects/UI.yy",
   },
   "parentObjectId":null,
   "persistent":true,
@@ -35,5 +35,5 @@
     "path":"sprites/spr_viewcenter/spr_viewcenter.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
