@@ -508,7 +508,7 @@ if lockedIn == true{
 #region your honor
 
 if state == 6{
-	room_restart(); // temp
+	global.playerDeath = 1; // temp
 }
 
 #endregion
@@ -516,7 +516,7 @@ if state == 6{
 #region NOT leaguge
 
 if state == 5{
-	room_goto_next(); // temp
+	//room_goto_next(); // temp
 }
 
 #endregion

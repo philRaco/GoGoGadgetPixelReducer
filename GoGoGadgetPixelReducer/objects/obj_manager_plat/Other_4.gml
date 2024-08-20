@@ -1,5 +1,5 @@
 /// @description Insert description here
-// You can write your code in this editor
+// basically the same as create.
 
 global.kidV = 0 //kid velocity
 global.kidMaxV = 2 //max speed

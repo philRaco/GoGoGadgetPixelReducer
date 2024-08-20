@@ -176,6 +176,7 @@ switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 	
 #endregion
 
+#region its changing
 if currChanging != true{
 
 image_blend = c_white; //debug
@@ -299,7 +300,12 @@ currChanging = false;
 
 }
 
+#endregion
+
 #region animation
+
+image_xscale = objSize;
+image_yscale = objSize;
 
 switch(state){ //OH MAN I LOVE [NON DESCRIPT GAME COMING OUT SEPTEMBER 6TH]
 	#region //	WATER BOTTLE	//

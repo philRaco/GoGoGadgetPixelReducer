@@ -4,15 +4,21 @@
 #region poopers
 
 if pop == true{
-	instance_destroy();
+	if popTimer > 0{
+		popTimer--;
+		sprite_index = spr_water_pop;
+	} else {
+		instance_destroy();
+	}
 }
 
-if collision_rectangle(bbox_left+(momVel*2.5),y+sprite_yoffset-4,bbox_right+(momVel*2.5),y+sprite_yoffset-2,obj_col,false,false){
+if (collision_rectangle(bbox_left+(momVel*2.5),y+sprite_yoffset-4,bbox_right+(momVel*2.5),y+sprite_yoffset-2,obj_col,false,false) || y > room_height+72){
 	pop = true;
 }
 
 #endregion
 
+if pop != true{
 #region gravity
 
 if !place_free(x,y+1){
@@ -61,3 +67,8 @@ if (vspeed > 0) {
 makePlaceHG(); //huh.
 
 #endregion
+} else {
+	hspeed = 0;
+	vspeed = 0;
+	momVel = 0;
+}
